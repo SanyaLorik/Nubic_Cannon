@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
 
@@ -12,7 +13,7 @@ public class WindowSwitcher
             _windows.Add(window.GetType(), window);
     }
 
-    public void Switch<TOld, TNew>(bool isOldFade = false, bool isNewUnfade = false)
+    public (TOld, TNew) Switch<TOld, TNew>(bool isOldFade = false, bool isNewUnfade = false)
         where TOld : Window
         where TNew : Window
     {
@@ -23,14 +24,16 @@ public class WindowSwitcher
             throw new System.Exception("WTF");
 
         if (isOldFade == true)
-            oldWindow.HideWithFade();
+            oldWindow.HideWithFade().Forget();
         else
             oldWindow.Hide();
 
         if (isNewUnfade == true)
-            newWindow.HideWithFade();
+            newWindow.ShowWithUnfade().Forget();
         else
-            newWindow.Hide();
+            newWindow.Show();
+
+        return ((TOld)oldWindow, (TNew)newWindow);
     }
 
     public void Show<TWindow>()

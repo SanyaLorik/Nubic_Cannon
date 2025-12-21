@@ -5,6 +5,7 @@ using Zenject;
 
 public class GameStart : MonoBehaviour
 {
+    [SerializeField] private Cannon _cannon;
     [SerializeField] private CameraMovement _cameraMovement;
 
     [Inject] private WindowSwitcher _windowSwitcher;
@@ -15,11 +16,21 @@ public class GameStart : MonoBehaviour
         WaitInputAsync().Forget();
     }
 
-    public async UniTask WaitInputAsync()
+    public async UniTaskVoid WaitInputAsync()
     {
         await UniTask.WaitWhile(() => _input.Direction3 == Vector3.zero);
 
         _cameraMovement.DirectToInplay();
-        _windowSwitcher.HideWithFade<UiMenuWindow>();
+        (_, UiInplayingWindow inplayingWindow) = _windowSwitcher.Switch<UiMenuWindow, UiInplayingWindow>(true, false);
+
+        inplayingWindow.ShowPowerSpeedometer();
+        inplayingWindow.StartSpeedometer();
+
+        //WaitInputAsync().Forget();
+    }
+
+    public async UniTaskVoid WaitShoot()
+    {
+        //await UniTask.WaitWhile(() => _input.Direction3 == Vector3.zero);
     }
 }

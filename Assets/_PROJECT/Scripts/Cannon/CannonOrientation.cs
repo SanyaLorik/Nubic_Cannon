@@ -1,4 +1,5 @@
 using Architecture_M;
+using SanyaBeerExtension;
 using UnityEngine;
 using Zenject;
 
@@ -98,15 +99,14 @@ public class CannonOrientation : MonoBehaviour
             angle -= 360;
         return angle;
     }
+}
 
-    // Дополнительные методы управления
-    public void AddRotationY(float delta)
-    {
-        _targetRotationY += delta;
-    }
+public class CannonShooting : MonoBehaviour
+{
+    [SerializeField] private SpawnpointSpawner<Nubic> _spawner;
 
-    public void AddRotationZ(float delta)
+    public Nubic Shoot()
     {
-        _targetRotationZ += delta;
+        return default;
     }
 }

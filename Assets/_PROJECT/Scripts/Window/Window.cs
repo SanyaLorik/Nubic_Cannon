@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using SanyaBeerExtension;
 using UnityEngine;
@@ -13,35 +14,44 @@ public class Window : MonoBehaviour
 
     private Tween _tween;
 
-    public void Show()
+    public virtual void Show()
     {
         _tween?.Kill();
 
         container.ActiveSelf();
     }
 
-    public void ShowWithUnfade()
+    public virtual async UniTask ShowWithUnfade()
     {
         _tween?.Kill();
 
         _tween = canvasGroup
             .DOFade(1, unfadeDuration)
             .OnComplete(Show);
+
+        await UniTask.WhenAny(
+            _tween.AsyncWaitForCompletion().AsUniTask(), 
+            _tween.AsyncWaitForKill().AsUniTask());
     }
 
-    public void Hide()
+    public virtual void Hide()
     {
         _tween?.Kill();
 
         container.DisactiveSelf();
     }
 
-    public void HideWithFade()
+    public virtual async UniTask HideWithFade()
     {
         _tween?.Kill();
 
         _tween = canvasGroup
             .DOFade(0, fadeDuration)
             .OnComplete(Hide);
+
+        await UniTask.WhenAny(
+            _tween.AsyncWaitForCompletion().AsUniTask(),
+            _tween.AsyncWaitForKill().AsUniTask());
+
     }
 }
