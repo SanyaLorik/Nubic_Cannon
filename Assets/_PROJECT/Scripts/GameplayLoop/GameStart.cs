@@ -5,9 +5,9 @@ using Zenject;
 
 public class GameStart : MonoBehaviour
 {
-    [SerializeField] private UiMenuWindow _uiMenuWindow;
     [SerializeField] private CameraMovement _cameraMovement;
 
+    [Inject] private WindowSwitcher _windowSwitcher;
     [Inject] private IInputDirection3 _input;
 
     private void Start()
@@ -18,7 +18,8 @@ public class GameStart : MonoBehaviour
     public async UniTask WaitInputAsync()
     {
         await UniTask.WaitWhile(() => _input.Direction3 == Vector3.zero);
+
         _cameraMovement.DirectToInplay();
-        _uiMenuWindow.Hide();
+        _windowSwitcher.HideWithFade<UiMenuWindow>();
     }
 }

@@ -1621,9 +1621,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5979a58124e8e24ea1c6a8b010752e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UiMenuWindow
-  _container: {fileID: 613269255}
-  _canvasGroup: {fileID: 613269257}
-  _fadeDuration: 0.5
+  container: {fileID: 613269255}
+  canvasGroup: {fileID: 613269257}
+  fadeDuration: 0
+  unfadeDuration: 0
 --- !u!1 &454519804
 GameObject:
   m_ObjectHideFlags: 0
@@ -1705,6 +1706,52 @@ Transform:
   - {fileID: 130145699}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &525695958
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 525695959}
+  - component: {fileID: 525695960}
+  m_Layer: 0
+  m_Name: WindowsInstaller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &525695959
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 525695958}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2021272405}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &525695960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 525695958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42d8e8f793518a040864f3468102cc6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WindowsInstaller
+  _windows:
+  - {fileID: 438302989}
 --- !u!224 &536866789 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6446658461143129164, guid: 33631fb1555ba4d408ca72ff10ba7667, type: 3}
@@ -3841,7 +3888,7 @@ MonoBehaviour:
   _useLimits: 1
   _minAngleY: -45
   _maxAngleY: 45
-  _minAngleZ: -30
+  _minAngleZ: -72
   _maxAngleZ: 0
 --- !u!1 &1375008068
 GameObject:
@@ -4615,7 +4662,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b414e0517241b5428e53ffcce2e79f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameStart
-  _uiMenuWindow: {fileID: 438302989}
   _cameraMovement: {fileID: 1197056343}
 --- !u!1 &1648744668
 GameObject:
@@ -6027,6 +6073,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 454519805}
+  - {fileID: 525695959}
   m_Father: {fileID: 130145699}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2021272406
@@ -6044,6 +6091,7 @@ MonoBehaviour:
   _scriptableObjectInstallers: []
   _monoInstallers:
   - {fileID: 454519806}
+  - {fileID: 525695960}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
