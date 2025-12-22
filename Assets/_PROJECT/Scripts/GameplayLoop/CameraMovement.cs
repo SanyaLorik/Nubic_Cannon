@@ -47,4 +47,9 @@ public class CameraMovement : MonoBehaviour
             .DORotate(_inplayPoint.eulerAngles, _inplayDuration)
             .SetEase(_inplayEase);
     }
+
+    public void DirectToNubicFly()
+    {
+
+    }
 }

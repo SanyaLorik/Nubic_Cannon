@@ -10,6 +10,11 @@ public class UiInplayingWindow : Window
         _powerSpeedometer.Show();
     }
 
+    public void HidePowerSpeedometer()
+    {
+        _powerSpeedometer.Hide();
+    }
+
     public void StartSpeedometer()
     {
         _powerSpeedometer.StartArrow().Forget();

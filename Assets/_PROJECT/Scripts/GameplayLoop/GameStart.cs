@@ -9,7 +9,8 @@ public class GameStart : MonoBehaviour
     [SerializeField] private CameraMovement _cameraMovement;
 
     [Inject] private WindowSwitcher _windowSwitcher;
-    [Inject] private IInputDirection3 _input;
+    [Inject] private IInputDirection3 _inputDirection;
+    [Inject] private IInputHaving _inputHaving;
 
     private void Start()
     {
@@ -18,19 +19,18 @@ public class GameStart : MonoBehaviour
 
     public async UniTaskVoid WaitInputAsync()
     {
-        await UniTask.WaitWhile(() => _input.Direction3 == Vector3.zero);
+        await UniTask.WaitWhile(() => _inputDirection.Direction3 == Vector3.zero);
 
         _cameraMovement.DirectToInplay();
-        (_, UiInplayingWindow inplayingWindow) = _windowSwitcher.Switch<UiMenuWindow, UiInplayingWindow>(true, false);
+        (_, UiInplayingWindow inplayingWindow) = _windowSwitcher.Switch<UiMenuWindow, UiInplayingWindow>(true, true);
 
         inplayingWindow.ShowPowerSpeedometer();
         inplayingWindow.StartSpeedometer();
 
-        //WaitInputAsync().Forget();
-    }
+        await UniTask.WaitWhile(() => _inputHaving.IsHaving == true);
 
-    public async UniTaskVoid WaitShoot()
-    {
-        //await UniTask.WaitWhile(() => _input.Direction3 == Vector3.zero);
+        _cameraMovement.DirectToNubicFly();
+        _cannon.Shoot();
+        inplayingWindow.Hide();
     }
 }

@@ -25,9 +25,11 @@ public class Window : MonoBehaviour
     {
         _tween?.Kill();
 
+        canvasGroup.alpha = 0;
+        Show();
+
         _tween = canvasGroup
-            .DOFade(1, unfadeDuration)
-            .OnComplete(Show);
+            .DOFade(1, unfadeDuration);
 
         await UniTask.WhenAny(
             _tween.AsyncWaitForCompletion().AsUniTask(), 
@@ -52,6 +54,5 @@ public class Window : MonoBehaviour
         await UniTask.WhenAny(
             _tween.AsyncWaitForCompletion().AsUniTask(),
             _tween.AsyncWaitForKill().AsUniTask());
-
     }
 }

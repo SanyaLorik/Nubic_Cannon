@@ -1,11 +1,11 @@
 using Architecture_M;
-using SanyaBeerExtension;
 using UnityEngine;
 using Zenject;
 
 public class CannonOrientation : MonoBehaviour
 {
     [Header("Rotation")]
+    [field: SerializeField] public Transform Muzzle;
     [SerializeField] private Transform _objectY;
     [SerializeField] private Transform _objectZ;
 
@@ -32,6 +32,9 @@ public class CannonOrientation : MonoBehaviour
     private float _targetRotationZ = 0f;
     private float _velocityY = 0f;
     private float _velocityZ = 0f;
+
+    public float RotationY => _currentRotationY;
+    public float RotationZ => _currentRotationZ;
 
     private void Start()
     {
@@ -97,16 +100,7 @@ public class CannonOrientation : MonoBehaviour
         angle %= 360;
         if (angle > 180)
             angle -= 360;
+
         return angle;
-    }
-}
-
-public class CannonShooting : MonoBehaviour
-{
-    [SerializeField] private SpawnpointSpawner<Nubic> _spawner;
-
-    public Nubic Shoot()
-    {
-        return default;
     }
 }
