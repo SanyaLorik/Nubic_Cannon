@@ -1,6 +1,7 @@
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using SanyaBeerExtension;
+using System.Linq;
 using UnityEngine;
 
 public class PowerSpeedometer: MonoBehaviour
@@ -40,7 +41,8 @@ public class PowerSpeedometer: MonoBehaviour
                 _tween.AsyncWaitForCompletion().AsUniTask(),
                 _tween.AsyncWaitForKill().AsUniTask());
 
-            _tween = _arrow.Source.DOMove(source, _arrow.Duration)
+            _tween = _arrow.Source
+                .DOMove(source, _arrow.Duration)
                 .SetEase(_arrow.Ease);
 
             await UniTask.WhenAny(

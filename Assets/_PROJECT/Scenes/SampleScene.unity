@@ -2914,6 +2914,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NubicMovement
   _rigidbody: {fileID: 786823625}
   _speed: 10
+  _inertia: 0.9
+  _smoothTime: 10
 --- !u!1 &811535270
 GameObject:
   m_ObjectHideFlags: 0
@@ -4261,8 +4263,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1452368506}
   - {fileID: 1983428475}
+  - {fileID: 1452368506}
   m_Father: {fileID: 880168515}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1316561345

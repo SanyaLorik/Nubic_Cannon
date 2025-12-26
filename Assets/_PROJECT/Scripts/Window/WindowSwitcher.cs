@@ -51,7 +51,7 @@ public class WindowSwitcher
         if (_windows.TryGetValue(typeof(TWindow), out Window window) == false)
             throw new System.Exception("WTF");
 
-        window.ShowWithUnfade();
+        window.ShowWithUnfade().Forget();
     }
 
     public void Hide<TWindow>()
@@ -67,8 +67,8 @@ public class WindowSwitcher
         where TWindow : Window
     {
         if (_windows.TryGetValue(typeof(TWindow), out Window window) == false)
-            window.HideWithFade();
+            window.HideWithFade().Forget();
 
-        window.HideWithFade();
+        window.HideWithFade().Forget();
     }
 }
