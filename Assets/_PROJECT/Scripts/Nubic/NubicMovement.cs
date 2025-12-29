@@ -17,6 +17,8 @@ public class NubicMovement : MonoBehaviour
 
     private bool _isMoving = false;
 
+    public Rigidbody Rigidbody => _rigidbody;
+
     private void FixedUpdate()
     {
         if (_isMoving == false)

@@ -1,7 +1,8 @@
 using DG.Tweening;
+using System;
 using UnityEngine;
 
-public class CameraMovement : MonoBehaviour
+public class CameraSetTarget : MonoBehaviour
 {
     [SerializeField] private Transform _camera;
 
@@ -16,6 +17,9 @@ public class CameraMovement : MonoBehaviour
     [Header("Ease")]
     [SerializeField] private Ease _inplayEase;
     [SerializeField] private Ease _menuEase;
+
+    [Header("Other Settings")]
+    [SerializeField] private CameraPlayerFollower _cameraPlayerFollower;
 
     private Tween _tweenPosition;
     private Tween _tweenRotation;
@@ -50,6 +54,6 @@ public class CameraMovement : MonoBehaviour
 
     public void DirectToNubicFly()
     {
-
+        _cameraPlayerFollower.StartFollow();
     }
 }

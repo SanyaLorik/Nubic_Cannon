@@ -6,7 +6,7 @@ using Zenject;
 public class GameStart : MonoBehaviour
 {
     [SerializeField] private Cannon _cannon;
-    [SerializeField] private CameraMovement _cameraMovement;
+    [SerializeField] private CameraSetTarget _cameraMovement;
 
     [Inject] private WindowSwitcher _windowSwitcher;
     [Inject] private IInputDirection3 _inputDirection;

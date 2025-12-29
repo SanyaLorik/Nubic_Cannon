@@ -36,6 +36,8 @@ public class CannonOrientation : MonoBehaviour
     public float RotationY => _currentRotationY;
     public float RotationZ => _currentRotationZ;
 
+    private bool _isMoving = true;
+
     private void Start()
     {
         if (_objectY != null)
@@ -53,7 +55,7 @@ public class CannonOrientation : MonoBehaviour
 
     private void Update()
     {
-        if (_input == null)
+        if (_isMoving == false)
             return;
 
         Vector3 inputDirection = _input.Direction3;
@@ -102,5 +104,15 @@ public class CannonOrientation : MonoBehaviour
             angle -= 360;
 
         return angle;
+    }
+
+    public void EnableMoving()
+    {
+        _isMoving = true;
+    }
+
+    public void DisableMoving()
+    {
+        _isMoving = false;
     }
 }

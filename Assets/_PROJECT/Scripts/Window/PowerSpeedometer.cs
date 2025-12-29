@@ -31,7 +31,7 @@ public class PowerSpeedometer: MonoBehaviour
         Vector3 source = _arrow.Source.transform.position;
         Vector3 target = _to.position.SetY(_arrow.Source.transform.position.y);
 
-        while (destroyCancellationToken.IsCancellationRequested == false)
+        while (true)
         {
             _tween = _arrow.Source
                 .DOMove(target, _arrow.Duration)
