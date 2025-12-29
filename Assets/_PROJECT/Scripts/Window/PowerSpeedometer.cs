@@ -1,16 +1,17 @@
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using SanyaBeerExtension;
-using System.Linq;
 using UnityEngine;
+using Zenject;
 
 public class PowerSpeedometer: MonoBehaviour
 {
     [SerializeField] private GameObject _container;
     [SerializeField] private Transform _from;
     [SerializeField] private Transform _to;
-    [SerializeField] private AnimationCurve _falloffCurve;
     [SerializeField] private ParametrBase<Transform> _arrow;
+
+    [Inject] private GameDataNC _gameDataNC;
 
     private Tween _tween;
 
@@ -61,6 +62,6 @@ public class PowerSpeedometer: MonoBehaviour
     private void CaclulateMultiplayer()
     {
         float distance = (_arrow.Source.position.x - _to.position.x) / (_from.position.x - _to.position.x);
-        Multiplayer = _falloffCurve.Evaluate(distance);
+        Multiplayer = _gameDataNC.FalloffCurve.Evaluate(distance);
     }
 }

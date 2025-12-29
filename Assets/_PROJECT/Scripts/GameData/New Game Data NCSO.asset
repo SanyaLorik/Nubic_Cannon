@@ -12,3 +12,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e4738561ac26ab41abff4cf906f4499, type: 3}
   m_Name: New Game Data NCSO
   m_EditorClassIdentifier: Assembly-CSharp::GameDataNCSO
+  <Data>k__BackingField:
+    <MinimumDelaySave>k__BackingField: 0.2
+    <PowerCannonShooting>k__BackingField: 10
+    <FalloffCurve>k__BackingField:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
