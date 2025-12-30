@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameDataNCSO
   <Data>k__BackingField:
     <MinimumDelaySave>k__BackingField: 0.2
-    <PowerCannonShooting>k__BackingField: 10
+    <PowerCannonShooting>k__BackingField: 20
     <FalloffCurve>k__BackingField:
       serializedVersion: 2
       m_Curve:
