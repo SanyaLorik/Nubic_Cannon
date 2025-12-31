@@ -6,6 +6,7 @@ public class CameraPlayerFollower : MonoBehaviour
     [SerializeField] private Transform _camera;
     [SerializeField] private NubicMovement _nubicMovement;
     [SerializeField] private Vector3 _offset;
+    [SerializeField] private Vector3 _minDistantion;
     [SerializeField] private float _rotationSmoothness = 5f;
 
     private bool _isFollowing = false;
@@ -22,6 +23,8 @@ public class CameraPlayerFollower : MonoBehaviour
             .SetY(cameraOffsetByVelocity.y * _offset.y);
 
         Vector3 cameraPosition = nubicPosition - cameraOffsetByVelocity;
+        cameraPosition = UpdateByMinDistance(cameraPosition);
+
         _camera.position = cameraPosition;
 
         // Вычисляем направление к цели
@@ -43,5 +46,16 @@ public class CameraPlayerFollower : MonoBehaviour
     public void StartFollow()
     {
         _isFollowing = true;
+    }
+
+    private Vector3 UpdateByMinDistance(Vector3 cameraOffsetByVelocity)
+    {
+        if (Mathf.Abs(cameraOffsetByVelocity.x) < _minDistantion.x)
+            cameraOffsetByVelocity.x = _minDistantion.x * Mathf.Sign(cameraOffsetByVelocity.x);
+
+        if (Mathf.Abs(cameraOffsetByVelocity.y) < _minDistantion.y)
+            cameraOffsetByVelocity.y = _minDistantion.y * Mathf.Sign(cameraOffsetByVelocity.y);
+
+        return cameraOffsetByVelocity;
     }
 }

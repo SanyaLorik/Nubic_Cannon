@@ -7,6 +7,7 @@ public class GameStart : MonoBehaviour
 {
     [SerializeField] private Cannon _cannon;
     [SerializeField] private CameraSetTarget _cameraMovement;
+    [SerializeField] private DistanceTracker _distanceTracker;
 
     [Inject] private WindowSwitcher _windowSwitcher;
     [Inject] private IInputDirection3 _inputDirection;
@@ -31,6 +32,7 @@ public class GameStart : MonoBehaviour
 
         _cameraMovement.DirectToNubicFly();
         _cannon.Shoot();
-        inplayingWindow.Hide();
+        inplayingWindow.HidePowerSpeedometer();
+        _distanceTracker.StartTrackAsync().Forget();
     }
 }

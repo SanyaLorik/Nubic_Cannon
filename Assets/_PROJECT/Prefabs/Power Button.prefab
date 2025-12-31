@@ -174,6 +174,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4039795050678259185}
+  - component: {fileID: 3798586203187745997}
   m_Layer: 5
   m_Name: Level Up Container
   m_TagString: Untagged
@@ -203,6 +204,24 @@ RectTransform:
   m_AnchoredPosition: {x: -28, y: 16}
   m_SizeDelta: {x: 52, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &3798586203187745997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651245203222875033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64ef453bd566c8c4f9091dd0d7f7d74e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MovingAsOffsetAnimation
+  _entity:
+    <Source>k__BackingField: {fileID: 4039795050678259185}
+    <Duration>k__BackingField: 1
+    <Ease>k__BackingField: 0
+  _offset: {x: 0, y: 16, z: 0}
+  _isAutoStart: 1
 --- !u!1 &2636491914983625317
 GameObject:
   m_ObjectHideFlags: 0
