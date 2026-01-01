@@ -34,5 +34,5 @@ public class GameStart : MonoBehaviour
         _cannon.Shoot();
         inplayingWindow.HidePowerSpeedometer();
         _distanceTracker.StartTrackAsync().Forget();
-    }
+    } 
 }

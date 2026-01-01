@@ -52,6 +52,11 @@ public class CameraSetTarget : MonoBehaviour
             .SetEase(_inplayEase);
     }
 
+    public void DirectToTableScore(Vector3 position)
+    {
+        _cameraPlayerFollower.StopFollow();
+    }
+
     public void DirectToNubicFly()
     {
         _cameraPlayerFollower.StartFollow();

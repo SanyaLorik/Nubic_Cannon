@@ -6,87 +6,70 @@ public class CameraPlayerFollower : MonoBehaviour
     [SerializeField] private Transform _camera;
     [SerializeField] private NubicMovement _nubicMovement;
     [SerializeField] private Vector3 _offset;
-    [SerializeField] private float _minDistance = 5f; // ћинимальна€ дистанци€ от камеры к игроку
-    [SerializeField] private float _rotationSmoothness = 5f;
-    [SerializeField] private float _positionSmoothness = 5f; // ѕлавность движени€ камеры
+    [SerializeField] private Vector3 _minDistance; 
+    [SerializeField] private float _positionSmoothness = 5f; 
+    [SerializeField] private float _magnitudeSensivity = 0.75f;
 
     private bool _isFollowing = false;
+
     private Vector3 _currentCameraPosition;
+    private Vector3 _initialDirection;
 
     private void LateUpdate()
     {
         if (_isFollowing == false)
             return;
+        /*
+        float magnitude = _nubicMovement.Rigidbody.linearVelocity.x * _magnitudeSensivity;
+        Vector3 target = _nubicMovement.transform.position - _initialDirection * magnitude;
 
-        Vector3 nubicPosition = _nubicMovement.transform.position;
-
-        // ¬ычисл€ем смещение на основе скорости
-        Vector3 cameraOffsetByVelocity = _nubicMovement.Rigidbody.linearVelocity.normalized;
-        cameraOffsetByVelocity = cameraOffsetByVelocity
-            .SetX(cameraOffsetByVelocity.x * _offset.x)
-            .SetY(cameraOffsetByVelocity.y * _offset.y);
-
-        // ÷елева€ позици€ камеры
-        Vector3 targetPosition = nubicPosition - cameraOffsetByVelocity;
-
-        // ќбеспечиваем минимальную дистанцию
-        targetPosition = ApplyMinDistance(targetPosition, nubicPosition);
+        target = ApplyMinDistance(target, _nubicMovement.transform.position);
 
         // ѕлавное движение камеры
         _currentCameraPosition = Vector3.Slerp(
             _currentCameraPosition,
-            targetPosition,
+            target,
             _positionSmoothness * Time.deltaTime
         );
 
-        _camera.position = _currentCameraPosition;
-
-        // ¬ычисл€ем направление к цели
-        Vector3 direction = nubicPosition - _currentCameraPosition;
-
-        direction = direction.ResetZ();
-
-        if (direction != Vector3.zero)
-        {
-            Quaternion targetRotation = Quaternion.LookRotation(direction);
-
-            _camera.rotation = Quaternion.Slerp(
-                _camera.rotation,
-                targetRotation,
-                _rotationSmoothness * Time.deltaTime
-            );
-        }
-    }
-
-    public void StartFollow()
-    {
-        _isFollowing = true;
+        _camera.position = target;
+        */
+        _camera.position = _nubicMovement.transform.position + _offset;
     }
 
     private Vector3 ApplyMinDistance(Vector3 cameraPosition, Vector3 playerPosition)
     {
-        // ¬ычисл€ем вектор от игрока к камере
-        Vector3 toCamera = cameraPosition - playerPosition;
+        Vector3 toCamera = playerPosition - cameraPosition;
 
-        // ѕровер€ем дистанцию
-        float currentDistance = toCamera.magnitude;
 
-        if (currentDistance < _minDistance)
+        if (toCamera.x < _minDistance.x)
         {
             // Ќормализуем направление и устанавливаем минимальную дистанцию
-            return cameraPosition.SetX(playerPosition.x - _minDistance);
+            cameraPosition = cameraPosition.SetX(playerPosition.x - _minDistance.x);
+        }
+
+        if (toCamera.y < _minDistance.y)
+        {
+            // Ќормализуем направление и устанавливаем минимальную дистанцию
+            cameraPosition = cameraPosition.SetY(playerPosition.y + _minDistance.y);
         }
 
         return cameraPosition;
     }
 
-    // ћетод дл€ визуализации минимальной дистанции в редакторе
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(_nubicMovement.transform.position, _minDistance);
 
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(_nubicMovement.transform.position, _camera.position);
+    public void StartFollow()
+    {
+        _isFollowing = true;
+
+        _currentCameraPosition = _camera.position;
+
+        _initialDirection = _nubicMovement.transform.position - _camera.position;
+        _initialDirection.Normalize();
+    }
+
+    public void StopFollow()
+    {
+        _isFollowing = false;
     }
 }

@@ -1,5 +1,6 @@
 using Architecture_M;
 using SanyaBeerExtension;
+using System;
 using UnityEngine;
 using Zenject;
 
@@ -9,8 +10,14 @@ public class NubicMovement : MonoBehaviour
     [SerializeField] private float _speed = 10f;
     [SerializeField][Range(0f, 1f)] private float _inertia = 0.5f; // 0 - нет инерции, 1 - полная инерция
     [SerializeField] private float _smoothTime = 0.2f; // Время сглаживания
+    [SerializeField] private float _reboundRatio;
+
+    [Header("TEST")]
+    [SerializeField] private float _minMagnitudeForDeath;
 
     [Inject] private IInputDirection3 _inputDirection;
+
+    public event Action OnDead;
 
     private Vector3 _velocity = Vector3.zero;
     private Vector3 _smoothVelocity = Vector3.zero;
@@ -30,11 +37,8 @@ public class NubicMovement : MonoBehaviour
         if (_isMoving == false)
             return;
 
-        if (_inputDirection == null)
-            return;
-
         // Целевая скорость на основе ввода
-        Vector3 targetVelocity = new Vector3(0f, 0f, -_inputDirection.Direction3.x * _speed);
+        Vector3 targetVelocity = new Vector3(0, 0f, -_inputDirection.Direction3.x * _speed);
 
         // Применяем инерцию: смешиваем текущую и целевую скорость
         if (_inertia < 1f)
@@ -51,7 +55,15 @@ public class NubicMovement : MonoBehaviour
         }
 
         // Применяем скорость к Rigidbody
-        _rigidbody.linearVelocity = _rigidbody.linearVelocity.SetZ(_velocity.z);
+        _rigidbody.linearVelocity = _rigidbody.linearVelocity
+            .SetZ(_velocity.z)
+            .MinX(1f);
+
+        if (_rigidbody.linearVelocity.magnitude < _minMagnitudeForDeath)
+        {
+            _isMoving = false;
+            OnDead?.Invoke();
+        }
     }
 
     public void SetVelocity(Vector3 velocity)
@@ -62,10 +74,8 @@ public class NubicMovement : MonoBehaviour
         _isMoving = true;
     }
 
-    public void SetInertia(float inertia)
+    public void Stop()
     {
-        _inertia = Mathf.Clamp01(inertia);
+        _isMoving = false;
     }
-
-    public float GetInertia() => _inertia;
 }

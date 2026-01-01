@@ -7,7 +7,7 @@ public class UiGameoverWindow : Window
 {
     [Header("Button Continue")]
     [SerializeField] private ParametrBase<CanvasGroup> _canvasGroupContinue;
-    [SerializeField] protected float _delayContinue;
+    [SerializeField] private float _delayContinue;
 
     public override void Show()
     {
