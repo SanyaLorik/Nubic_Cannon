@@ -19,6 +19,12 @@ public class NubicMovement : MonoBehaviour
 
     public Rigidbody Rigidbody => _rigidbody;
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(Rigidbody.position, Rigidbody.position + Rigidbody.linearVelocity * 5);
+    }
+
     private void FixedUpdate()
     {
         if (_isMoving == false)
