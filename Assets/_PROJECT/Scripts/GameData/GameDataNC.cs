@@ -9,4 +9,8 @@ public class GameDataNC : GameDataBase
 
     [field: Header("Power Speedometer")]
     [field: SerializeField] public AnimationCurve FalloffCurve { get; private set; }
+
+    [field: Header("Money")]
+    [field: SerializeField] public CurrencyTypeSO MoneyTypeSO { get; private set; }
+    [field: SerializeField] public float CurrentMoneyRatio { get; private set; }
 }

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 29b9a994935876949994becd9f133e61, type: 3}
-  m_Name: New Currency Type SO
+  m_Name: Money Currency Type SO
   m_EditorClassIdentifier: Assembly-CSharp::CurrencyTypeSO
   <Id>k__BackingField: 0
   <Icon>k__BackingField: {fileID: 21300000, guid: 3fb23bf6552b44aafb168ed0584e1641, type: 3}

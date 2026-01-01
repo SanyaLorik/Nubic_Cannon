@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e4738561ac26ab41abff4cf906f4499, type: 3}
-  m_Name: New Game Data NCSO
+  m_Name: Game Data NCSO
   m_EditorClassIdentifier: Assembly-CSharp::GameDataNCSO
   <Data>k__BackingField:
     <MinimumDelaySave>k__BackingField: 0.2
@@ -39,3 +39,5 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
+    <MoneyTypeSO>k__BackingField: {fileID: 11400000, guid: 9ae4adaf6d429424ca30234b54d6a08f, type: 2}
+    <CurrentMoneyRatio>k__BackingField: 1

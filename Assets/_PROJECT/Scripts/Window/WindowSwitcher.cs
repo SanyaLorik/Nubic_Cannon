@@ -71,4 +71,13 @@ public class WindowSwitcher
 
         window.HideWithFade().Forget();
     }
+
+    public TWindow GetWindow<TWindow>()
+        where TWindow : Window
+    {
+        if (_windows.TryGetValue(typeof(TWindow), out Window window) == false)
+            throw new Exception("Does not have this window: " + nameof(TWindow));
+
+        return (TWindow)window;
+    }
 }

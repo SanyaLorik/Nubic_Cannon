@@ -1,6 +1,8 @@
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using SanyaBeerExtension;
+using System;
+using TMPro;
 using UnityEngine;
 
 public class UiGameoverWindow : Window
@@ -9,11 +11,19 @@ public class UiGameoverWindow : Window
     [SerializeField] private ParametrBase<CanvasGroup> _canvasGroupContinue;
     [SerializeField] private float _delayContinue;
 
+    [Header("Award")]
+    [SerializeField] private TextMeshProUGUI _awardMoneyText;
+
     public override void Show()
     {
         base.Show();
 
         ShowContinueButton().Forget();
+    }
+
+    public void SetAwardMoneyText(int awardMoney)
+    {
+        _awardMoneyText.text = awardMoney.ToString();
     }
 
     private async UniTaskVoid ShowContinueButton()

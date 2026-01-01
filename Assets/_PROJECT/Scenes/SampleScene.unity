@@ -4957,6 +4957,7 @@ MonoBehaviour:
     <Duration>k__BackingField: 1.5
     <Ease>k__BackingField: 5
   _delayContinue: 2
+  _awardMoneyText: {fileID: 173898324}
 --- !u!1 &603231164
 GameObject:
   m_ObjectHideFlags: 0
@@ -16280,6 +16281,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameOver
   _tablePlacer: {fileID: 1950325999}
+  _distanceTracker: {fileID: 1382393200}
   _cameraSetTarget: {fileID: 1197056343}
   _nubicMovement: {fileID: 786823627}
   _delayAfterDied: 1.5
