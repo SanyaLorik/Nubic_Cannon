@@ -1,8 +1,8 @@
+using System;
 using UnityEngine;
 
 public class Cannon : MonoBehaviour
 {
-
     [SerializeField] private CannonOrientation _orientation;
     [SerializeField] private CannonShooting _shooting;
     [SerializeField] private Nubic _nubic;
@@ -11,5 +11,10 @@ public class Cannon : MonoBehaviour
     {
         _shooting.Shoot(_nubic);
         _orientation.DisableMoving();
+    }
+
+    public void EnableMoving()
+    {
+        _orientation.EnableMoving();
     }
 }

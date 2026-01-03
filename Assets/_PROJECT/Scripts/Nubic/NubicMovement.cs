@@ -124,7 +124,7 @@ public class NubicMovement : MonoBehaviour
 
         Debug.Log($"Current velocity: {_rigidbody.linearVelocity}, Rebound velocity: {reboundVelocity}");
 
-        if (reboundVelocity.magnitude < _minReboundVelocity.magnitude)
+        if (reboundVelocity.ResetZ().magnitude < _minReboundVelocity.ResetZ().magnitude)
         {
             StopMovementWithDeath();
             return;

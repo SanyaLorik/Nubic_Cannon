@@ -1,6 +1,5 @@
 using Cysharp.Threading.Tasks;
 using SanyaBeerExtension;
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -11,10 +10,12 @@ public class GameOver : MonoBehaviour
     [SerializeField] private DistanceTracker _distanceTracker;
     [SerializeField] private CameraSetTarget _cameraSetTarget;
     [SerializeField] private NubicMovement _nubicMovement;
+    [SerializeField] private GameStart _gameStart;
 
     [Header("Delay")]
     [SerializeField] private float _delayAfterDied;
     [SerializeField] private float _delayAfterTable;
+    [SerializeField] private float _delaySwitchToMenuWindow;
 
     [Header("Continue")]
     [SerializeField] private Button _continueButton;
@@ -36,7 +37,7 @@ public class GameOver : MonoBehaviour
 
     private void OnOver()
     {
-        Final().Forget();
+        FinalAsync().Forget();
     }
 
     private void OnNext()
@@ -45,7 +46,7 @@ public class GameOver : MonoBehaviour
         _windowSwitcher.Switch<UiGameoverWindow, UiMenuWindow>(true, true);
     }
 
-    private async UniTaskVoid Final()
+    private async UniTaskVoid FinalAsync()
     {
         UpdateAward();
 
@@ -59,6 +60,10 @@ public class GameOver : MonoBehaviour
         await UniTask.Delay(_delayAfterTable.ToDelayMillisecond());
 
         _windowSwitcher.Switch<UiInplayingWindow, UiGameoverWindow>(true, true);
+
+        await UniTask.Delay(_delaySwitchToMenuWindow.ToDelayMillisecond());
+
+        _gameStart.WaitInputAsync().Forget();
     }
 
     private void UpdateAward()

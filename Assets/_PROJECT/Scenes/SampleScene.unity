@@ -3165,6 +3165,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 388298130}
   m_CullTransparentMesh: 1
+--- !u!1 &390226547
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 390226548}
+  m_Layer: 0
+  m_Name: NubicStartPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &390226548
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 390226547}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2, y: -1.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 880168515}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &391830409
 GameObject:
   m_ObjectHideFlags: 0
@@ -6158,6 +6189,7 @@ GameObject:
   - component: {fileID: 786823625}
   - component: {fileID: 786823624}
   - component: {fileID: 786823627}
+  - component: {fileID: 786823628}
   m_Layer: 0
   m_Name: Nubic
   m_TagString: Untagged
@@ -6174,7 +6206,7 @@ Transform:
   m_GameObject: {fileID: 786823622}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.16, y: -1.18, z: 0}
+  m_LocalPosition: {x: 2.16, y: -1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6194,6 +6226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Nubic
   _movement: {fileID: 786823627}
+  _startPosition: {fileID: 786823628}
 --- !u!54 &786823625
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6260,6 +6293,20 @@ MonoBehaviour:
   _smoothTime: 10
   _reboundRatio: {x: 0.75, y: 0.75, z: 0}
   _minReboundVelocity: {x: 2, y: 2, z: 2}
+--- !u!114 &786823628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 786823622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a705e74891c094e49b24e67458b09ff4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NubicReady
+  _nubic: {fileID: 786823623}
+  _startPosition: {fileID: 390226548}
 --- !u!1 &787820129
 GameObject:
   m_ObjectHideFlags: 0
@@ -6915,6 +6962,7 @@ Transform:
   - {fileID: 1316561344}
   - {fileID: 786823623}
   - {fileID: 1248558377}
+  - {fileID: 390226548}
   - {fileID: 144273789}
   m_Father: {fileID: 1955408592}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12516,6 +12564,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b414e0517241b5428e53ffcce2e79f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameStart
+  _nubic: {fileID: 786823624}
   _cannon: {fileID: 1316561347}
   _cameraMovement: {fileID: 1197056343}
   _distanceTracker: {fileID: 1382393200}
@@ -16284,8 +16333,10 @@ MonoBehaviour:
   _distanceTracker: {fileID: 1382393200}
   _cameraSetTarget: {fileID: 1197056343}
   _nubicMovement: {fileID: 786823627}
+  _gameStart: {fileID: 1601926177}
   _delayAfterDied: 1.5
   _delayAfterTable: 2
+  _delaySwitchToMenuWindow: 1
   _continueButton: {fileID: 1707982384}
 --- !u!1001 &2804431354292277187
 PrefabInstance:

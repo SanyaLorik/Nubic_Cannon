@@ -5,6 +5,7 @@ using Zenject;
 
 public class GameStart : MonoBehaviour
 {
+    [SerializeField] private Nubic _nubic;  
     [SerializeField] private Cannon _cannon;
     [SerializeField] private CameraSetTarget _cameraMovement;
     [SerializeField] private DistanceTracker _distanceTracker;
@@ -20,9 +21,13 @@ public class GameStart : MonoBehaviour
 
     public async UniTaskVoid WaitInputAsync()
     {
+        _nubic.ReturnToBeReady();
+
         await UniTask.WaitWhile(() => _inputDirection.Direction3 == Vector3.zero);
 
         _cameraMovement.DirectToInplay();
+        _cannon.EnableMoving();
+
         (_, UiInplayingWindow inplayingWindow) = _windowSwitcher.Switch<UiMenuWindow, UiInplayingWindow>(true, true);
 
         inplayingWindow.ShowPowerSpeedometer();
