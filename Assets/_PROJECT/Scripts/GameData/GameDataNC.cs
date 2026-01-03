@@ -19,4 +19,5 @@ public class GameDataNC : GameDataBase
 
     [Header("Save")]
     public EconomicNCSave EconomicSave;
+    public RecordNCSave RecordSave;
 }

@@ -12,6 +12,7 @@ public class GameOver : MonoBehaviour
     [SerializeField] private NubicMovement _nubicMovement;
     [SerializeField] private GameStart _gameStart;
     [SerializeField] private EconomicNC _economic;
+    [SerializeField] private RecordNC _record;
 
     [Header("Delay")]
     [SerializeField] private float _delayAfterDied;
@@ -50,6 +51,7 @@ public class GameOver : MonoBehaviour
     private async UniTaskVoid FinalAsync()
     {
         int awardMoney = (int)(_distanceTracker.DistantionTracked * _gameDataNC.CurrentMoneyRatio);
+        _record.SetNewRecord(_distanceTracker.DistantionTracked);
 
         UpdateAward(awardMoney);
 
@@ -57,7 +59,7 @@ public class GameOver : MonoBehaviour
 
         await UniTask.Delay(_delayAfterDied.ToDelayMillisecond());
 
-        _tablePlacer.Show();
+        _tablePlacer.Show(_distanceTracker.DistantionTracked);
         _cameraSetTarget.DirectToTableScore(_tablePlacer.TablePosition);
 
         await UniTask.Delay(_delayAfterTable.ToDelayMillisecond());
