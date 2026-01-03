@@ -13,4 +13,7 @@ public class GameDataNC : GameDataBase
     [field: Header("Money")]
     [field: SerializeField] public CurrencyTypeSO MoneyTypeSO { get; private set; }
     [field: SerializeField] public float CurrentMoneyRatio { get; private set; }
+
+    [field: Header("Ground")]
+    [field: SerializeField] public string ReboundTag { get; private set; } = "Rebound";
 }
