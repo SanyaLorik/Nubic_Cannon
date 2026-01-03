@@ -6255,80 +6255,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NubicMovement
   _rigidbody: {fileID: 786823625}
-  _speed: 10
+  _speedZ: 10
   _inertia: 0.9
   _smoothTime: 10
   _reboundRatio: {x: 0.75, y: 0.75, z: 0}
-  _trajectory:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.5
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: -2
-      outSlope: -2
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _acceleration:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0.8716739
-      outSlope: 0.8716739
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.61452895
-      value: 0.53566885
-      inSlope: 1.7969286
-      outSlope: 1.7969286
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.18833564
-      outWeight: 0.049990613
-    - serializedVersion: 3
-      time: 0.99884033
-      value: 1
-      inSlope: 0.8081235
-      outSlope: 0.8081235
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.10574785
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _height: 20
-  _duration: 4
-  _distance: 50
-  _minMagnitudeForDeath: 1.2
+  _minReboundVelocity: {x: 2, y: 2, z: 2}
 --- !u!1 &787820129
 GameObject:
   m_ObjectHideFlags: 0
