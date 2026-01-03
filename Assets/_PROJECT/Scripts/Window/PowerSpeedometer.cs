@@ -19,7 +19,6 @@ public class PowerSpeedometer: MonoBehaviour
 
     private void OnDestroy()
     {
-        _tokenSource?.Cancel();
         _tokenSource?.Dispose();
     }
 

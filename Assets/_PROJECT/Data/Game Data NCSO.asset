@@ -21,23 +21,37 @@ MonoBehaviour:
       - serializedVersion: 3
         time: 0
         value: 1
-        inSlope: 0
-        outSlope: 0
+        inSlope: 0.10134848
+        outSlope: 0.10134848
         tangentMode: 34
         weightedMode: 0
         inWeight: 0
-        outWeight: 0
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.3391405
+        value: 1.0343714
+        inSlope: 0.024669183
+        outSlope: 0.024669183
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
       - serializedVersion: 3
         time: 1
         value: 1
-        inSlope: 0
-        outSlope: 0
+        inSlope: -0.052010115
+        outSlope: -0.052010115
         tangentMode: 34
         weightedMode: 0
-        inWeight: 0
+        inWeight: 0.33333334
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     <MoneyTypeSO>k__BackingField: {fileID: 11400000, guid: 9ae4adaf6d429424ca30234b54d6a08f, type: 2}
     <CurrentMoneyRatio>k__BackingField: 1
+    <ReboundTag>k__BackingField: Rebound
+    EconomicSave:
+      Money: 0
+    RecordSave:
+      Distance: 0

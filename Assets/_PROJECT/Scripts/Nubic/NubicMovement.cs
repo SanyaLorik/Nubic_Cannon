@@ -22,6 +22,8 @@ public class NubicMovement : MonoBehaviour
 
     public event Action OnDead;
 
+    public Vector3 DeathPosition { get; private set; }
+
     private Vector3 _velocity = Vector3.zero;
     private Vector3 _smoothVelocity = Vector3.zero;
     private bool _isMoving = false;
@@ -147,6 +149,9 @@ public class NubicMovement : MonoBehaviour
     {
         _rigidbody.linearVelocity = Vector3.zero;
         _isMoving = false;
+
+        DeathPosition = _rigidbody.position;
+
         OnDead?.Invoke();
     }
 
