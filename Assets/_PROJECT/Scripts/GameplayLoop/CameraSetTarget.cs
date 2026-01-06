@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class CameraSetTarget : MonoBehaviour
 {
-    [SerializeField] private Transform _camera;
+    [SerializeField] private Camera _camera;
 
     [Header("Inplay")]
     [SerializeField] private Transform _inplayPoint;
     [SerializeField] private Ease _inplayEase;
     [SerializeField] private float _inplayDuration;
+    [SerializeField] private float _fovInplay;
 
     [Header("Menu")]
     [SerializeField] private Transform _menuPoint;
     [SerializeField] private Ease _menuEase;
     [SerializeField] private float _menuDuration;
+    [SerializeField] private float _fovMenu;
 
     [Header("Table")]
     [SerializeField] private Ease _tableEase;
@@ -24,20 +26,33 @@ public class CameraSetTarget : MonoBehaviour
     [Header("Other Settings")]
     [SerializeField] private CameraPlayerFollower _cameraPlayerFollower;
 
+    private Transform _cameraTransform;
+
     private Tween _tweenPosition;
     private Tween _tweenRotation;
+    private Tween _tweenFov;
+
+    private void Awake()
+    {
+        _cameraTransform = _camera.transform;
+    }
 
     public void DirectToMenu()
     {
         _tweenPosition?.Kill();
         _tweenRotation?.Kill();
+        _tweenFov?.Kill();
 
-        _tweenPosition = _camera
+        _tweenPosition = _cameraTransform
             .DOMove(_menuPoint.position, _menuDuration)
             .SetEase(_menuEase);
 
-        _tweenRotation = _camera
+        _tweenRotation = _cameraTransform
             .DORotate(_menuPoint.eulerAngles, _menuDuration)
+            .SetEase(_menuEase);
+
+        _tweenFov = _camera
+            .DOFieldOfView(_fovMenu, _menuDuration)
             .SetEase(_menuEase);
     }
 
@@ -45,13 +60,18 @@ public class CameraSetTarget : MonoBehaviour
     {
         _tweenPosition?.Kill();
         _tweenRotation?.Kill();
+        _tweenFov?.Kill();
 
-        _tweenPosition = _camera
+        _tweenPosition = _cameraTransform
             .DOMove(_inplayPoint.position, _inplayDuration)
             .SetEase(_inplayEase);
 
-        _tweenRotation = _camera
+        _tweenRotation = _cameraTransform
             .DORotate(_inplayPoint.eulerAngles, _inplayDuration)
+            .SetEase(_inplayEase);
+
+        _tweenFov = _camera
+            .DOFieldOfView(_fovInplay, _inplayDuration)
             .SetEase(_inplayEase);
     }
 
@@ -64,10 +84,10 @@ public class CameraSetTarget : MonoBehaviour
 
         Vector3 cameraPosition = tablePosition + _offset;
 
-        Vector3 direction = cameraPosition - _camera.position;
+        Vector3 direction = cameraPosition - _cameraTransform.position;
         direction = direction.ResetZ();
 
-        _tweenPosition = _camera
+        _tweenPosition = _cameraTransform
             .DOMove(cameraPosition, _tableDuration)
             .SetEase(_tableEase);
 
@@ -75,7 +95,7 @@ public class CameraSetTarget : MonoBehaviour
         {
             Quaternion targetRotation = Quaternion.LookRotation(direction);
 
-            _tweenRotation = _camera
+            _tweenRotation = _cameraTransform
                 .DORotate(targetRotation.eulerAngles, _tableDuration)
                 .SetEase(_tableEase);
         }
