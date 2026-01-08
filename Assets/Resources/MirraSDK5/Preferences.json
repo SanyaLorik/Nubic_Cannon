@@ -1,0 +1,80 @@
+{
+    "groupCollection": [
+        {
+            "key": "Editor",
+            "group": {
+                "boolCollection": [],
+                "intCollection": [],
+                "floatCollection": [],
+                "stringCollection": [
+                    {
+                        "key": "Configuration",
+                        "value": "EditorConfiguration"
+                    }
+                ]
+            }
+        },
+        {
+            "key": "Build",
+            "group": {
+                "boolCollection": [],
+                "intCollection": [],
+                "floatCollection": [],
+                "stringCollection": [
+                    {
+                        "key": "Configuration",
+                        "value": "FallbackConfiguration"
+                    }
+                ]
+            }
+        },
+        {
+            "key": "MirraWebConfiguration",
+            "group": {
+                "boolCollection": [
+                    {
+                        "key": "IAnalytics.Visible",
+                        "value": false
+                    },
+                    {
+                        "key": "IAssets.Visible",
+                        "value": false
+                    },
+                    {
+                        "key": "IAchievements.Visible",
+                        "value": false
+                    },
+                    {
+                        "key": "Y8_PropertyGroup.Visible",
+                        "value": true
+                    }
+                ],
+                "intCollection": [],
+                "floatCollection": [],
+                "stringCollection": []
+            }
+        },
+        {
+            "key": "EditorConfiguration",
+            "group": {
+                "boolCollection": [
+                    {
+                        "key": "IPause.Visible",
+                        "value": false
+                    },
+                    {
+                        "key": "IPause.Override",
+                        "value": false
+                    },
+                    {
+                        "key": "ITime.Visible",
+                        "value": false
+                    }
+                ],
+                "intCollection": [],
+                "floatCollection": [],
+                "stringCollection": []
+            }
+        }
+    ]
+}
