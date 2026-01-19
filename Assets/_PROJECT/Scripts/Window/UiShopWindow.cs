@@ -7,6 +7,9 @@ public class UiShopWindow : Window
     [Header("Buttons")]
     [SerializeField] private Button _backButton;
 
+    [Header("Camera")]
+    [SerializeField] private CameraSetTarget _cameraSetTarget;
+
     [Inject] private WindowSwitcher _windowSwitcher;
 
     private void OnEnable()
@@ -22,5 +25,6 @@ public class UiShopWindow : Window
     private void OnMainWindowShow()
     {
         _windowSwitcher.Switch<UiShopWindow, UiMenuWindow>(true, true);
+        _cameraSetTarget.DirectToMenu();
     }
 }

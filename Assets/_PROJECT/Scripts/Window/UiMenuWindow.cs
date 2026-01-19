@@ -11,7 +11,10 @@ public class UiMenuWindow : Window
     [SerializeField] private Button _faceChangingButton;
 
     [Header("Record")]
-    [SerializeField] private TextMeshProUGUI _recordText; 
+    [SerializeField] private TextMeshProUGUI _recordText;
+
+    [Header("Camera")]
+    [SerializeField] private CameraSetTarget _cameraSetTarget;
 
     [Inject] private WindowSwitcher _windowSwitcher;
 
@@ -32,6 +35,7 @@ public class UiMenuWindow : Window
     private void OnShowShop()
     {
         _windowSwitcher.Switch<UiMenuWindow, UiShopWindow>(true, true);
+        _cameraSetTarget.DirectToShop();
     }
 
     private void OnShowSetting()

@@ -18,6 +18,11 @@ public class CameraSetTarget : MonoBehaviour
     [SerializeField] private float _menuDuration;
     [SerializeField] private float _fovMenu;
 
+    [Header("Shop")]
+    [SerializeField] private Transform _shopPoint;
+    [SerializeField] private Ease _shopEase;
+    [SerializeField] private float _shopDuration;
+
     [Header("Table")]
     [SerializeField] private Ease _tableEase;
     [SerializeField] private Vector3 _offset;
@@ -72,6 +77,21 @@ public class CameraSetTarget : MonoBehaviour
 
         _tweenFov = _camera
             .DOFieldOfView(_fovInplay, _inplayDuration)
+            .SetEase(_inplayEase);
+    }
+
+    public void DirectToShop()
+    {
+        _tweenPosition?.Kill();
+        _tweenRotation?.Kill();
+        _tweenFov?.Kill();
+
+        _tweenPosition = _cameraTransform
+            .DOMove(_shopPoint.position, _shopDuration)
+            .SetEase(_shopEase);
+
+        _tweenRotation = _cameraTransform
+            .DORotate(_shopPoint.eulerAngles, _shopDuration)
             .SetEase(_inplayEase);
     }
 
