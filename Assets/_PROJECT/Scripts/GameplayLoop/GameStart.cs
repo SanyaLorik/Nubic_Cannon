@@ -9,6 +9,7 @@ public class GameStart : MonoBehaviour
     [SerializeField] private Cannon _cannon;
     [SerializeField] private CameraSetTarget _cameraMovement;
     [SerializeField] private DistanceTracker _distanceTracker;
+    [SerializeField] private NubicLaunchingVisual _nubicLaunchingVisual;
 
     [Inject] private WindowSwitcher _windowSwitcher;
     [Inject] private IInputDirection3 _inputDirection;
