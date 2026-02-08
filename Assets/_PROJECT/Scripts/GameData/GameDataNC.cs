@@ -16,8 +16,4 @@ public class GameDataNC : GameDataBase
 
     [field: Header("Ground")]
     [field: SerializeField] public string ReboundTag { get; private set; } = "Rebound";
-
-    [Header("Save")]
-    public EconomicNCSave EconomicSave;
-    public RecordNCSave RecordSave;
 }

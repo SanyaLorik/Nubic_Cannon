@@ -1,3 +1,4 @@
+using Architecture_M;
 using System;
 using UnityEngine;
 using Zenject;
@@ -5,16 +6,18 @@ using Zenject;
 public class RecordNC : MonoBehaviour
 {
     [Inject] private WindowSwitcher _windowSwitcher;
-    [Inject] private GameDataNC _gameData;
+    [Inject] private IGameSave<GameSaveNC> _gameData;
+
+    private GameSaveNC _gameSave;
 
     private void Start()
     {
-        SetRecordText(_gameData.RecordSave.Distance);
+        SetRecordText(_gameData.GetSave.Record.Distance);
     }
 
     public void SetNewRecord(int distance)
     {
-        int maxDistance = Mathf.Max(distance, _gameData.RecordSave.Distance);
+        int maxDistance = Mathf.Max(distance, _gameSave.Record.Distance);
         SetRecordText(maxDistance);
     }
 
